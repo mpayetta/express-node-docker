@@ -1,12 +1,14 @@
 FROM mhart/alpine-node:latest
 
-RUN rm -rf /tmp/node_modules
-ADD package.json /tmp/package.json
-RUN cd /tmp && npm install
-RUN mkdir -p /opt/app && cp -a /tmp/node_modules /opt/app/
+WORKDIR /code
 
-WORKDIR /opt/app
-ADD . /opt/app
+RUN npm install -g nodemon
+
+COPY package.json /code/package.json
+RUN npm install && npm ls
+RUN mv /code/node_modules /node_modules
+
+COPY . /code
 
 EXPOSE 3000
 
