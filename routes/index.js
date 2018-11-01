@@ -1,21 +1,22 @@
-var express = require('express')
-var router = express.Router()
-var mongodb = require('mongodb')
-var client = mongodb.MongoClient
+const express = require('express')
+const router = express.Router()
+const mongodb = require('mongodb')
+const client = mongodb.MongoClient
 
-var uri = 'mongodb://mongo/dummy-app'
+const uri = 'mongodb://mongo/dummy-app'
 
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  res.render('index', { title: 'Express' })
+  const title = 'manzana'
+  res.render('index', { title })
 })
 
 router.get('/data/from/db', function(req, res, next) {
   client.connect(uri, function (err, db) {
     if (err) return next(err)
 
-    var collection = db.collection('dummy')
+    const collection = db.collection('dummy')
     collection.find({}).toArray(function(err, docs) {
       if (err) return next(err)
       return res.json(docs)
@@ -27,7 +28,7 @@ router.post('/data/into/db', function(req, res, next) {
   client.connect(uri, function (err, db) {
     if (err) return next(err)
 
-    var collection = db.collection('dummy')
+    const collection = db.collection('dummy')
     collection.insertMany(req.body, function(err, result) {
       return res.json({ result })
     })
