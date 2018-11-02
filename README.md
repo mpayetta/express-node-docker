@@ -1,1 +1,3 @@
-For more details about this project visit this [blog post](http://blog.mpayetta.com/node.js/docker/mongodb/2016/09/04/dockerizing-node-mongo-app/)
+WARNING: Work In Progress
+
+Node, Express, Mongodb boilerplate, with nodemon for autoreload during development
