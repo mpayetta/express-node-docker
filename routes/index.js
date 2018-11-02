@@ -8,8 +8,7 @@ const uri = 'mongodb://mongo/dummy-app'
 
 /* GET home page. */
 router.get('/', function(req, res) {
-  const title = 'manzana'
-  res.render('index', { title })
+  res.send('welcome... or not so welcome...')
 })
 
 router.get('/data/from/db', function(req, res, next) {
